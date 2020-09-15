@@ -9,7 +9,8 @@ export const AddTodo = ({ onSubmit, showHideAnime, showHideNeAnime }) => {
   const pressHander = () => {
     if (value.trim()) {
       if (value === 'anime') showHideAnime()
-      if (value==="ne anime") showHideNeAnime()
+      if (value === 'ne anime') showHideNeAnime()
+      if (value === 'Hello') Alert.alert('Hello my friend!')
       onSubmit(value)
       setValue('')
     } else {

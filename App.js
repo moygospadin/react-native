@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, Image, View, FlatList } from 'react-native'
+import React, { useState, useRef } from 'react'
+import { StyleSheet, Text, Image, View, FlatList, Animated } from 'react-native'
 import { AddTodo } from './src/AddTodo'
 import { Navbar } from './src/Navbar'
 import { Todo } from './src/Todo'
 import { Audio } from 'expo-av'
+import FadeInView from './src/FadeInView'
 
 async function playMusic() {
   try {
@@ -44,27 +45,27 @@ export default function App() {
   const removeTodo = (id) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id))
   }
+
   return (
     <View style={{ height: '100%' }}>
-      {anime && (
-        <Image style={styles.anime} source={require('./src/assets/anime.png')} />
-      )}
-      {neAnime && (
-        <Image
-          style={styles.ne_anime}
-          source={require('./src/assets/ne_anime.jpg')}
-        />
-      )}
-      <Navbar title="Todo App!" />
+      <View>
+        {anime && (
+         <FadeInView/>
+        )}
+        {neAnime && (
+          <Image
+            style={styles.ne_anime}
+            source={require('./src/assets/ne_anime.jpg')}
+          />
+        )}
+      </View>
+    
+      <Navbar title="Todo list"/>
       <View style={styles.container}>
         <AddTodo
-         
           onSubmit={addTodo}
-        
-           showHideAnime={showHideAnime}
-       
-            showHideNeAnime={showHideNeAnime}
-      
+          showHideAnime={showHideAnime}
+          showHideNeAnime={showHideNeAnime}
         />
 
         <FlatList
@@ -79,16 +80,11 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: { paddingHorizontal: 30, paddingVertical: 20 },
-  anime: {
-    position: 'absolute',
-    alignSelf: 'center',
-    bottom: '-5%',
-  },
   ne_anime: {
     position: 'absolute',
+    top:150,
     alignSelf: 'center',
-    bottom: '-5%',
     width: '80%',
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
 })
