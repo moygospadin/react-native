@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, TextInput, Button, Alert } from 'react-native'
 
-export const AddTodo = ({ onSubmit, showHideAnime }) => {
+
+
+export const AddTodo = ({ onSubmit, showHideAnime, showHideNeAnime }) => {
   const [value, setValue] = useState('')
 
   const pressHander = () => {
     if (value.trim()) {
       if (value === 'anime') showHideAnime()
+      if (value==="ne anime") showHideNeAnime()
       onSubmit(value)
       setValue('')
     } else {
